@@ -9,6 +9,14 @@ class TTTBoard:
         board - a list of '*'s, 'X's & 'O's. 'X's represent moves by player 'X', 'O's
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
+    def __init__(self):
+        board_list = ['*','*','*','*','*','*','*','*','*']
+
+    def __str__(self):
+        return f"{self.board[0]} {self.board[1]} {self.board[2]}\n" \
+               f"{self.board[3]} {self.board[4]} {self.board[5]}\n" \
+               f"{self.board[6]} {self.board[7]} {self.board[8]}" 
+
 
     pass
 
@@ -54,7 +62,6 @@ def play_tic_tac_toe() -> None:
         print(f"{players[1]} wins!")
     else:
         print(f"Board full, cat's game!")
-
 
 if __name__ == "__main__":
     # here are some tests. These are not at all exhaustive tests. You will DEFINITELY
