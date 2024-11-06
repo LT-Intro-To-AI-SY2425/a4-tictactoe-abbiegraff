@@ -9,16 +9,46 @@ class TTTBoard:
         board - a list of '*'s, 'X's & 'O's. 'X's represent moves by player 'X', 'O's
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
-    def __init__(self):
-        board_list = ['*','*','*','*','*','*','*','*','*']
+    def __init__(self) -> None:
+        self.board = ['*','*','*','*','*','*','*','*','*']
 
     def __str__(self):
         return f"{self.board[0]} {self.board[1]} {self.board[2]}\n" \
                f"{self.board[3]} {self.board[4]} {self.board[5]}\n" \
                f"{self.board[6]} {self.board[7]} {self.board[8]}" 
+    
+    def make_move(self, player, pos): 
+        if pos > 8 or pos < 0 or self.board[pos] != '*':
+            return False
+        
+        self.board[pos] = player 
+        return True
+    
+    def has_won(self, player):
+        ps = [player] * 3 
+        if self.board[:3] == ps or self.board[3:6] == ps or self.board[6:] == ps:
+            return True
+        
+        if self.board[::3] == ps or self.board[1::3] == ps or self.board[2::3] == ps:
+            return True #every third 
+        
+        if self.board[::4] == ps or self.board[2:7:2] == ps:
+            return True 
+        
+        return False
+    
+    def game_over(self):
+        if self.has_won("X") or self.has_won("O") or "*" not in self.board:
+            return True 
+        return False 
+    
+    def clear(self):
+        self.board = ['*'] * 9 
+
 
 
     pass
+
 
 
 def play_tic_tac_toe() -> None:
